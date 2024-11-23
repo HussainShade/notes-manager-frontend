@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import NoteList from './components/NoteList/NoteList';
+import NoteForm from './components/NoteForm/NoteForm';
+import SearchBar from './components/SearchBar/SearchBar';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const [notes, setNotes] = useState([]);
+  const [searchParams, setSearchParams] = useState({ title: '', category: '' });
+  const [selectedNote, setSelectedNote] = useState(null);
+
+  const fetchNotes = async () => {
+    const response = await axios.get('https://notes-manager-backend-1.onrender.com/notes', {
+      params: searchParams,
+    });
+    setNotes(response.data);
+  };
+
+  useEffect(() => {
+    fetchNotes();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <h1>Personal Notes Manager</h1>
+      <SearchBar setSearchParams={setSearchParams} />
+      <NoteForm selectedNote={selectedNote} setSelectedNote={setSelectedNote} fetchNotes={fetchNotes} />
+      <NoteList notes={notes} setNotes={setNotes} setSelectedNote={setSelectedNote} searchParams={searchParams} />
     </div>
   );
 }
