@@ -1,0 +1,57 @@
+.list-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .list-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .list-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-description {
+    font-size: 1rem;
+    color: #555555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-category {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  
+  .list-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .edit-icon:hover {
+    color: #28a745;
+  }
+  
+  .delete-icon:hover {
+    color: #dc3545;
+  }
+  
